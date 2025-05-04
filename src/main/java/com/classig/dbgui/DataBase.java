@@ -1,28 +1,54 @@
 package com.classig.dbgui;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 
 import java.io.*;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 
+/**
+ * Класс база данных
+ * Автор: Игонин В.Ю
+ */
 public class DataBase {
+    /**
+     * Наблюдаемый список с клиентами больницы
+     */
     private ObservableList<Client> listClient = FXCollections.observableArrayList();
 
+    /**
+     * Добавление клиента
+     * @param surname фамилия
+     * @param name имя
+     * @param patr отчество
+     * @param birth дата рождения
+     * @param categ категория
+     */
     public void AddClient(String surname, String name, String patr, String birth, String categ)
     {
         Client client = new Client(surname, name, patr, birth, categ);
         listClient.add(client);
     }
 
+    /**
+     * Удаление клиента
+     * @param i индекс клиента в списке
+     */
     public void DelClient(int i)
     {
         listClient.remove(i);
     }
 
+    /**
+     * Редактирование информации о клиенте
+     * @param surname фамилия
+     * @param name имя
+     * @param patr отчество
+     * @param birth дата рождения
+     * @param categ категория
+     * @param i индекс клиента в списке
+     */
     public void EditClient(String surname, String name, String patr, String birth, String categ, int i)
     {
         listClient.get(i).setCategory(categ);
@@ -32,6 +58,10 @@ public class DataBase {
         listClient.get(i).setPatrynomic(patr);
     }
 
+    /**
+     * Загрузка базы данных из файла
+     * @param file имя файла
+     */
     public void Load(String file)
     {
         if (Files.exists(Paths.get(file)))
@@ -52,6 +82,10 @@ public class DataBase {
         }
     }
 
+    /**
+     * Сохранение базы данных в файл
+     * @param file имя файла
+     */
     public void Save(String file)
     {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(file)))
@@ -67,6 +101,10 @@ public class DataBase {
         }
     }
 
+    /**
+     * Получение списка с клиентами
+     * @return список с клиентами больницы
+     */
     public ObservableList<Client> getListClient()
     {
         return listClient;
