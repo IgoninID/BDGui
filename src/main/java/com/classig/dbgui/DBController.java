@@ -85,7 +85,7 @@ public class DBController {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("О программе");
         alert.setHeaderText(null);
-        alert.setContentText("База данных с информацией о клинтах больницы: ФИО, Дата рождения, Категория.\nАвтор: Игонин В.Ю.");
+        alert.setContentText("База данных с информацией о клиентах больницы: ФИО, Дата рождения, Категория.\nАвтор: Игонин В.Ю.");
         alert.showAndWait();
     }
 
