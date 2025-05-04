@@ -92,7 +92,7 @@ public class DBController {
     public void onClickAdd()
     {
         final String noerr = "-fx-background-color: white;";
-        final String err = "-fx-background-color: red;";
+        final String err = "-fx-background-color: pink;";
         SurNameTF.setStyle(noerr);
         NameTF.setStyle(noerr);
         BirthDateTF.setStyle(noerr);
@@ -120,7 +120,7 @@ public class DBController {
     public void onClickEdit()
     {
         final String noerr = "-fx-background-color: white;";
-        final String err = "-fx-background-color: red;";
+        final String err = "-fx-background-color: pink;";
         SurNameTF.setStyle(noerr);
         NameTF.setStyle(noerr);
         BirthDateTF.setStyle(noerr);

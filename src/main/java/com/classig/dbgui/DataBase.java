@@ -41,9 +41,8 @@ public class DataBase {
                 String line;
                 while ((line = reader.readLine()) != null)
                 {
-                    String[] part = line.split(" ; ", 6);
-                    //todo Пустые поля
-                    listClient.add(new Client(part[0], part[1], part[2], part[4], part[5]));
+                    String[] part = line.split(" ; ");
+                    listClient.add(new Client(part[0], part[1], part[2], part[3], part[4]));
                 }
             }
             catch (IOException e)

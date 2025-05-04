@@ -39,7 +39,13 @@ public class Client {
 
     public void setPatrynomic(String patrynomic)
     {
+        if (!patrynomic.isEmpty()) {
             this.Patrynomic = patrynomic;
+        }
+        else
+        {
+            this.Patrynomic = "-";
+        }
     }
 
     public void setBirthDate(String birthdate)
@@ -50,9 +56,15 @@ public class Client {
         }
     }
 
-    public void setCategory(String category)
-    {
+    public void setCategory(String category) {
+        if (!category.isEmpty())
+        {
         this.Category = category;
+        }
+        else
+        {
+            this.Category = "-";
+        }
     }
 
     public final String getName()
@@ -83,7 +95,7 @@ public class Client {
     @Override
     public final String toString()
     {
-        return SurName+" ; "+Name+" ; "+SurName+" ; "+BirthDate+" ; "+Category;
+        return SurName+" ; "+Name+" ; "+Patrynomic+" ; "+BirthDate+" ; "+Category;
     }
 
 }
