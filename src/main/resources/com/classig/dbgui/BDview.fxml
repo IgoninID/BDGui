@@ -1,33 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToolBar?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="600.0" style="-fx-background-color: purple;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.classig.dbgui.DBController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="600.0" style="-fx-background-color: purple;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.classig.dbgui.DBController">
    <children>
       <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="600.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <menus>
           <Menu mnemonicParsing="false" text="Файл">
             <items>
-              <MenuItem mnemonicParsing="false" text="Закрыть" />
-                  <MenuItem mnemonicParsing="false" text="Сохранить" />
-                  <MenuItem mnemonicParsing="false" text="Загрузить" />
+              <MenuItem fx:id="CLose" mnemonicParsing="false" onAction="#onClickClose" text="Закрыть" />
+                  <MenuItem fx:id="Save" mnemonicParsing="false" onAction="#onClickSave" text="Сохранить" />
+                  <MenuItem fx:id="Load" mnemonicParsing="false" onAction="#onClickLoad" text="Загрузить" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Редактировать">
             <items>
-              <MenuItem mnemonicParsing="false" text="Удалить" />
-                  <MenuItem mnemonicParsing="false" text="Добавить" />
-                  <MenuItem mnemonicParsing="false" text="Редактировать" />
+              <MenuItem fx:id="Delete" mnemonicParsing="false" onAction="#onClickDel" text="Удалить" />
+                  <MenuItem fx:id="Add" mnemonicParsing="false" onAction="#onClickAdd" text="Добавить" />
+                  <MenuItem fx:id="Edit" mnemonicParsing="false" onAction="#onClickEdit" text="Редактировать" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Помощь">
@@ -39,41 +31,41 @@
       </MenuBar>
       <ToolBar layoutX="11.0" layoutY="352.0" prefHeight="43.0" prefWidth="600.0" style="-fx-background-color: lightgreen;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
         <items>
-          <Button mnemonicParsing="false" text="Добавить" />
-            <Button layoutX="10.0" layoutY="13.0" mnemonicParsing="false" text="Удалить" />
-            <Button layoutX="66.0" layoutY="13.0" mnemonicParsing="false" text="Редактировать" />
-            <Button layoutX="147.0" layoutY="13.0" mnemonicParsing="false" text="Сохранить" />
-            <Button layoutX="249.0" layoutY="13.0" mnemonicParsing="false" text="Загрузить" />
+          <Button fx:id="AddB" mnemonicParsing="false" onAction="#onClickAdd" text="Добавить" />
+            <Button fx:id="DeleteB" layoutX="10.0" layoutY="13.0" mnemonicParsing="false" onAction="#onClickDel" text="Удалить" />
+            <Button fx:id="EditB" layoutX="66.0" layoutY="13.0" mnemonicParsing="false" onAction="#onClickEdit" text="Редактировать" />
+            <Button fx:id="SaveB" layoutX="147.0" layoutY="13.0" mnemonicParsing="false" onAction="#onClickSave" text="Сохранить" />
+            <Button fx:id="LoadB" layoutX="249.0" layoutY="13.0" mnemonicParsing="false" onAction="#onClickLoad" text="Загрузить" />
         </items>
       </ToolBar>
-      <TableView layoutY="52.0" prefHeight="209.0" prefWidth="600.0" AnchorPane.bottomAnchor="175.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
+      <TableView fx:id="DBTable" editable="true" layoutY="52.0" prefHeight="209.0" prefWidth="600.0" AnchorPane.bottomAnchor="175.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
         <columns>
-          <TableColumn fx:id="FamC" prefWidth="120.0" text="Фамилия" />
-          <TableColumn fx:id="NameC" prefWidth="120.0" text="Имя" />
-            <TableColumn fx:id="SurNameC" prefWidth="120.0" text="Отчество" />
-            <TableColumn fx:id="BirthDateC" prefWidth="120.0" text="Дата рождения" />
-            <TableColumn fx:id="CategoryC" prefWidth="120.0" text="Категория" />
+          <TableColumn fx:id="SurName" prefWidth="120.0" text="Фамилия" />
+          <TableColumn fx:id="Name" prefWidth="120.0" text="Имя" />
+            <TableColumn fx:id="Patrynomic" prefWidth="120.0" text="Отчество" />
+            <TableColumn fx:id="BirthDate" prefWidth="120.0" text="Дата рождения" />
+            <TableColumn fx:id="Category" prefWidth="120.0" text="Категория" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <TextField fx:id="FamTF" layoutX="113.0" layoutY="389.0" AnchorPane.bottomAnchor="136.0" AnchorPane.leftAnchor="113.0" />
+      <TextField fx:id="SurNameTF" layoutX="113.0" layoutY="389.0" AnchorPane.bottomAnchor="136.0" AnchorPane.leftAnchor="113.0" />
       <TextField fx:id="NameTF" layoutX="271.0" layoutY="389.0" AnchorPane.bottomAnchor="136.0" AnchorPane.leftAnchor="271.0" />
       <TextField fx:id="BirthDateTF" layoutX="113.0" layoutY="429.0" prefHeight="25.0" prefWidth="465.0" AnchorPane.bottomAnchor="96.0" AnchorPane.leftAnchor="113.0" AnchorPane.rightAnchor="22.0" />
-      <TextField fx:id="SurNameTF" layoutX="428.0" layoutY="389.0" AnchorPane.bottomAnchor="136.0" AnchorPane.leftAnchor="428.0" AnchorPane.rightAnchor="23.0" />
+      <TextField fx:id="PatrTF" layoutX="428.0" layoutY="389.0" AnchorPane.bottomAnchor="136.0" AnchorPane.leftAnchor="428.0" AnchorPane.rightAnchor="23.0" />
       <TextField fx:id="CategoryTF" layoutX="113.0" layoutY="468.0" prefHeight="25.0" prefWidth="465.0" AnchorPane.bottomAnchor="57.0" AnchorPane.leftAnchor="113.0" AnchorPane.rightAnchor="22.0" />
-      <Label layoutX="7.0" layoutY="386.0" prefHeight="32.0" prefWidth="98.0" text="ФИО" textFill="#02ff13" AnchorPane.bottomAnchor="132.0" AnchorPane.leftAnchor="7.0">
+      <Label layoutX="7.0" layoutY="386.0" prefHeight="32.0" prefWidth="98.0" text="ФИО" textFill="WHITE" AnchorPane.bottomAnchor="132.0" AnchorPane.leftAnchor="7.0">
          <font>
             <Font name="Segoe UI Black" size="12.0" />
          </font>
       </Label>
-      <Label layoutX="7.0" layoutY="426.0" prefHeight="32.0" prefWidth="98.0" text="Дата рождения" textFill="#02ff13" AnchorPane.bottomAnchor="93.0" AnchorPane.leftAnchor="7.0">
+      <Label layoutX="7.0" layoutY="426.0" prefHeight="32.0" prefWidth="98.0" text="Дата рождения" textFill="WHITE" AnchorPane.bottomAnchor="93.0" AnchorPane.leftAnchor="7.0">
          <font>
             <Font name="Segoe UI Black" size="12.0" />
          </font>
       </Label>
-      <Label layoutX="7.0" layoutY="465.0" prefHeight="32.0" prefWidth="98.0" text="Категория" textFill="#02ff13" AnchorPane.bottomAnchor="53.0" AnchorPane.leftAnchor="7.0">
+      <Label layoutX="7.0" layoutY="465.0" prefHeight="32.0" prefWidth="98.0" text="Категория" textFill="WHITE" AnchorPane.bottomAnchor="53.0" AnchorPane.leftAnchor="7.0">
          <font>
             <Font name="Segoe UI Black" size="12.0" />
          </font>
