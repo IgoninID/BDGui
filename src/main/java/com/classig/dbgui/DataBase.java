@@ -44,15 +44,15 @@ public class DataBase {
         for (int i = 0; i < listClient.size(); i++)
         {
             if (
-                    listClient.get(i).getName().equals(name) && listClient.get(i).getSurName().equals(surname) &&
-                    listClient.get(i).getPatrynomic().equals(patr) && listClient.get(i).getBirthDate().equals(birth) &&
-                    listClient.get(i).getCategory().equals(categ)
+                    listClient.get(i).getName().equalsIgnoreCase(name) && listClient.get(i).getSurName().equalsIgnoreCase(surname) &&
+                    listClient.get(i).getPatrynomic().equalsIgnoreCase(patr) && listClient.get(i).getBirthDate().equalsIgnoreCase(birth) &&
+                    listClient.get(i).getCategory().equalsIgnoreCase(categ)
                )
             {
                 return i;
             }
         }
-        throw new OutOfMemoryError();
+        throw new OutOfMemoryError("Нет такого человека");
     }
 
     /**
@@ -61,8 +61,14 @@ public class DataBase {
      */
     public void DelClient(int i)
     {
-        //todo исключение если нет номера
-        listClient.remove(i);
+        if (i < listClient.size())
+        {
+            listClient.remove(i);
+        }
+        else
+        {
+            throw new OutOfMemoryError("Индекс за пределами списка");
+        }
     }
 
     /**
@@ -76,11 +82,17 @@ public class DataBase {
      */
     public void EditClient(String surname, String name, String patr, String birth, String categ, int i)
     {
-        listClient.get(i).setCategory(categ);
-        listClient.get(i).setBirthDate(birth);
-        listClient.get(i).setName(name);
-        listClient.get(i).setSurName(surname);
-        listClient.get(i).setPatrynomic(patr);
+        if (i < listClient.size()) {
+            listClient.get(i).setCategory(categ);
+            listClient.get(i).setBirthDate(birth);
+            listClient.get(i).setName(name);
+            listClient.get(i).setSurName(surname);
+            listClient.get(i).setPatrynomic(patr);
+        }
+        else
+        {
+            throw new OutOfMemoryError("Нет такого индекса");
+        }
     }
 
     /**

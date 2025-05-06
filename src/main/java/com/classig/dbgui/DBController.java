@@ -158,6 +158,7 @@ public class DBController {
         if (!SurNameTF.getText().isEmpty() && !NameTF.getText().isEmpty() && !BirthDateTF.getText().isEmpty()) //
         {
             db.AddClient(SurNameTF.getText(), NameTF.getText(), PatrTF.getText(), BirthDateTF.getText(), CategoryTF.getText()); //
+            //todo вывод в строку состояния
         }
         else
         {
@@ -188,8 +189,16 @@ public class DBController {
         BirthDateTF.setStyle(noerr); //
         if (!SurNameTF.getText().isEmpty() && !NameTF.getText().isEmpty() && !BirthDateTF.getText().isEmpty()) //
         {
-            db.EditClient(SurNameTF.getText(), NameTF.getText(), PatrTF.getText(), BirthDateTF.getText(), CategoryTF.getText(), selectionModel.getFocusedIndex()); //
-            DBTable.refresh(); //
+            try
+            {
+                db.EditClient(SurNameTF.getText(), NameTF.getText(), PatrTF.getText(), BirthDateTF.getText(), CategoryTF.getText(), selectionModel.getFocusedIndex()); //
+                DBTable.refresh(); //
+                //todo вывод в строку состояния
+            }
+            catch (OutOfMemoryError e)
+            {
+                //todo вывод в строку состояния
+            }
         }
         else
         {
@@ -222,10 +231,11 @@ public class DBController {
             {
                 int i = db.FindClient(SurNameTF.getText(), NameTF.getText(), PatrTF.getText(), BirthDateTF.getText(), CategoryTF.getText()); //
                 selectionModel.select(i);
+                //todo вывод в строку состояния
             }
             catch (OutOfMemoryError e)
             {
-
+                //todo вывод в строку состояния
             }
         }
         else
@@ -250,6 +260,7 @@ public class DBController {
      */
     public void onClickSave()
     {
+        //todo вывод в строку состояния
         FileChooser fileChooser = new FileChooser(); //
         fileChooser.setTitle("Сохранить базу данных"); //
 
@@ -277,6 +288,7 @@ public class DBController {
      */
     public void onClickLoad()
     {
+        //todo вывод в строку состояния
         FileChooser fileChooser = new FileChooser(); //
         fileChooser.setTitle("Загрузить базу данных"); //
 
@@ -314,7 +326,14 @@ public class DBController {
      */
     public void onClickDel()
     {
-        db.DelClient(selectionModel.getFocusedIndex()); //
+        //todo вывод в строку состояния
+        try {
+            db.DelClient(selectionModel.getFocusedIndex()); //
+        }
+        catch (OutOfMemoryError e)
+        {
+            //todo вывод в строку состояния
+        }
     }
 
 }
