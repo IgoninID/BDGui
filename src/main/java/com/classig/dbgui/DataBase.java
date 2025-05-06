@@ -31,12 +31,37 @@ public class DataBase {
         listClient.add(client);
     }
 
+    public int FindClient(String surname, String name, String patr, String birth, String categ)
+    {
+        if (patr.isEmpty())
+        {
+            patr = "-";
+        }
+        if (categ.isEmpty())
+        {
+            categ = "-";
+        }
+        for (int i = 0; i < listClient.size(); i++)
+        {
+            if (
+                    listClient.get(i).getName().equals(name) && listClient.get(i).getSurName().equals(surname) &&
+                    listClient.get(i).getPatrynomic().equals(patr) && listClient.get(i).getBirthDate().equals(birth) &&
+                    listClient.get(i).getCategory().equals(categ)
+               )
+            {
+                return i;
+            }
+        }
+        throw new OutOfMemoryError();
+    }
+
     /**
      * Удаление клиента
      * @param i индекс клиента в списке
      */
     public void DelClient(int i)
     {
+        //todo исключение если нет номера
         listClient.remove(i);
     }
 
@@ -61,6 +86,7 @@ public class DataBase {
     /**
      * Загрузка базы данных из файла
      * @param file имя файла
+     //todo описание файла
      */
     public void Load(String file)
     {

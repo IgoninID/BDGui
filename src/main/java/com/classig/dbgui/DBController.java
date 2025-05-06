@@ -102,14 +102,14 @@ public class DBController {
      */
     public void initialize()
     {
-        //
+        // Связывание колонок и методов Client
         SurName.setCellValueFactory(new PropertyValueFactory<>("SurName"));
         Name.setCellValueFactory(new PropertyValueFactory<>("Name"));
         Patrynomic.setCellValueFactory(new PropertyValueFactory<>("Patrynomic"));
         BirthDate.setCellValueFactory(new PropertyValueFactory<>("BirthDate"));
         Category.setCellValueFactory(new PropertyValueFactory<>("Category"));
 
-        //
+        // связывание таблицы и базы данных
         DBTable.setItems(db.getListClient());
 
         //
@@ -190,6 +190,43 @@ public class DBController {
         {
             db.EditClient(SurNameTF.getText(), NameTF.getText(), PatrTF.getText(), BirthDateTF.getText(), CategoryTF.getText(), selectionModel.getFocusedIndex()); //
             DBTable.refresh(); //
+        }
+        else
+        {
+            if (SurNameTF.getText().isEmpty()) //
+            {
+                SurNameTF.setStyle(err); //
+            }
+            if (NameTF.getText().isEmpty()) //
+            {
+                NameTF.setStyle(err); //
+            }
+            if (BirthDateTF.getText().isEmpty()) //
+            {
+                BirthDateTF.setStyle(err); //
+            }
+        }
+    }
+
+    public void onClickFind()
+    {
+        final String noerr = "-fx-background-color: white;"; //
+        final String err = "-fx-background-color: pink;"; //
+        SurNameTF.setStyle(noerr); //
+        NameTF.setStyle(noerr); //
+        BirthDateTF.setStyle(noerr); //
+        if (!SurNameTF.getText().isEmpty() && !NameTF.getText().isEmpty() && !BirthDateTF.getText().isEmpty()) //
+        {
+
+            try
+            {
+                int i = db.FindClient(SurNameTF.getText(), NameTF.getText(), PatrTF.getText(), BirthDateTF.getText(), CategoryTF.getText()); //
+                selectionModel.select(i);
+            }
+            catch (OutOfMemoryError e)
+            {
+
+            }
         }
         else
         {
