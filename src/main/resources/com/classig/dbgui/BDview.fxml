@@ -1,95 +1,253 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Объявление версии XML и кодировки файла -->
 
+
+<!-- Импорт всех классов из пакета javafx.scene.control для использования элементов управления, таких как кнопки, таблицы и т.д. -->
 <?import javafx.scene.control.*?>
+
+<!-- Импорт всех классов из пакета javafx.scene.layout для использования контейнеров компоновки, таких как AnchorPane -->
 <?import javafx.scene.layout.*?>
+
+<!-- Импорт классов из пакета javafx.scene.text для работы с текстовыми элементами, такими как Font -->
 <?import javafx.scene.text.*?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="600.0" style="-fx-background-color: #5599FF;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.classig.dbgui.DBController">
-   <children>
-      <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="600.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <menus>
+    <!-- Определение корневого контейнера AnchorPane с бесконечными максимальными/минимальными размерами, предпочтительными размерами 550x600 пикселей, голубым фоном (#5599FF), указанием пространства имен JavaFX и контроллера для обработки событий -->
+
+    <children>
+       <!-- Начало секции для дочерних элементов AnchorPane -->
+
+       <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="600.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+          <!-- Создание панели меню, расположенной на 2 пикселя ниже верхнего края, с высотой 25 пикселей, шириной 600 пикселей, белым фоном, привязанной к верхнему, левому и правому краям контейнера -->
+
+          <menus>
+              <!-- Начало списка меню в MenuBar -->
+
           <Menu fx:id="FileW" mnemonicParsing="false" text="Файл">
+              <!-- Создание меню с идентификатором FileW, без подчеркивания горячих клавиш, с текстом "Файл" -->
+
             <items>
+                <!-- Начало списка пунктов меню внутри меню "Файл" -->
+
               <MenuItem fx:id="Close" mnemonicParsing="false" onAction="#onClickClose" text="Закрыть" />
+                <!-- Пункт меню с идентификатором Close, без горячих клавиш, вызывает метод onClickClose при выборе, текст "Закрыть" -->
+
                   <MenuItem fx:id="Save" mnemonicParsing="false" onAction="#onClickSave" text="Сохранить" />
+                <!-- Пункт меню с идентификатором Save, без горячих клавиш, вызывает метод onClickSave, текст "Сохранить" -->
+
                   <MenuItem fx:id="Load" mnemonicParsing="false" onAction="#onClickLoad" text="Загрузить" />
+                <!-- Пункт меню с идентификатором Load, без горячих клавиш, вызывает метод onClickLoad, текст "Загрузить" -->
+
             </items>
+              <!-- Конец списка пунктов меню -->
+
           </Menu>
+              <!-- Конец меню "Файл" -->
+
           <Menu mnemonicParsing="false" text="Действия">
+              <!-- Создание меню с текстом "Действия", без подчеркивания горячих клавиш -->
+
             <items>
+                <!-- Начало списка пунктов меню внутри меню "Действия" -->
+
               <MenuItem fx:id="Delete" mnemonicParsing="false" onAction="#onClickDel" text="Удалить" />
+                <!-- Пункт меню с идентификатором Delete, вызывает метод onClickDel, текст "Удалить" -->
+
                   <MenuItem fx:id="Add" mnemonicParsing="false" onAction="#onClickAdd" text="Добавить" />
+                <!-- Пункт меню с идентификатором Add, вызывает метод onClickAdd, текст "Добавить" -->
+
                   <MenuItem fx:id="Edit" mnemonicParsing="false" onAction="#onClickEdit" text="Редактировать" />
+                <!-- Пункт меню с идентификатором Edit, вызывает метод onClickEdit, текст "Редактировать" -->
+
                   <MenuItem fx:id="Find" mnemonicParsing="false" onAction="#onClickFind" text="Найти" />
+                <!-- Пункт меню с идентификатором Find, вызывает метод onClickFind, текст "Найти" -->
+
             </items>
+              <!-- Конец списка пунктов меню -->
+
           </Menu>
+              <!-- Конец меню "Действия" -->
+
           <Menu mnemonicParsing="false" text="Помощь">
+              <!-- Создание меню с текстом "Помощь", без горячих клавиш -->
+
             <items>
+                <!-- Начало списка пунктов меню внутри меню "Помощь" -->
+
               <MenuItem fx:id="About" mnemonicParsing="false" onAction="#onClickAbout" text="О программе" />
+                <!-- Пункт меню с идентификатором About, вызывает метод onClickAbout, текст "О программе" -->
+
             </items>
+              <!-- Конец списка пунктов меню -->
+
           </Menu>
+              <!-- Конец меню "Помощь" -->
+
         </menus>
+           <!-- Конец списка меню -->
+
       </MenuBar>
+        <!-- Конец элемента MenuBar -->
+
       <ToolBar layoutX="11.0" layoutY="352.0" prefHeight="32.0" prefWidth="600.0" style="-fx-background-color: #0066FF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-        <items>
+          <!-- Создание панели инструментов, расположенной на координатах (11, 352), с высотой 32 пикселя, шириной 600 пикселей, синим фоном (#0066FF), привязанной к нижнему, левому и правому краям контейнера -->
+
+          <items>
+              <!-- Начало списка элементов панели инструментов -->
+
           <Button fx:id="AddB" mnemonicParsing="false" onAction="#onClickAdd" text="Добавить">
+              <!-- Кнопка с идентификатором AddB, вызывает метод onClickAdd, текст "Добавить" -->
+
                <font>
                   <Font name="Segoe UI" size="12.0" />
+                   <!-- Установка шрифта Segoe UI размером 12 для текста кнопки -->
+
                </font></Button>
+              <!-- Конец кнопки AddB -->
+
             <Button fx:id="DeleteB" layoutX="10.0" layoutY="13.0" mnemonicParsing="false" onAction="#onClickDel" text="Удалить" />
+              <!-- Кнопка с идентификатором DeleteB, вызывает метод onClickDel, текст "Удалить" -->
+
             <Button fx:id="EditB" layoutX="66.0" layoutY="13.0" mnemonicParsing="false" onAction="#onClickEdit" text="Редактировать" />
+              <!-- Кнопка с идентификатором EditB, вызывает метод onClickEdit, текст "Редактировать" -->
+
             <Button fx:id="SaveB" layoutX="147.0" layoutY="13.0" mnemonicParsing="false" onAction="#onClickSave" text="Сохранить" />
+              <!-- Кнопка с идентификатором SaveB, вызывает метод onClickSave, текст "Сохранить" -->
+
             <Button fx:id="LoadB" layoutX="249.0" layoutY="13.0" mnemonicParsing="false" onAction="#onClickLoad" text="Загрузить" />
+              <!-- Кнопка с идентификатором LoadB, вызывает метод onClickLoad, текст "Загрузить" -->
+
             <Button fx:id="FindB" layoutX="327.0" layoutY="14.0" mnemonicParsing="false" onAction="#onClickFind" text="Найти" />
+              <!-- Кнопка с идентификатором FindB, вызывает метод onClickFind, текст "Найти" -->
+
         </items>
+          <!-- Конец списка элементов панели инструментов -->
+
       </ToolBar>
+        <!-- Конец элемента ToolBar -->
+
       <TableView fx:id="DBTable" layoutY="52.0" prefHeight="209.0" prefWidth="600.0" AnchorPane.bottomAnchor="175.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
-        <columns>
+          <!-- Создание таблицы с идентификатором DBTable, высотой 209 пикселей, шириной 600 пикселей, привязанной к верхнему (25 пикселей), нижнему (175 пикселей), левому и правому краям -->
+
+          <columns>
+              <!-- Начало списка столбцов таблицы -->
+
           <TableColumn fx:id="SurName" prefWidth="120.0" text="Фамилия" />
+              <!-- Столбец с идентификатором SurName, шириной 120 пикселей, заголовок "Фамилия" -->
+
           <TableColumn fx:id="Name" prefWidth="120.0" text="Имя" />
+              <!-- Столбец с идентификатором Name, шириной 120 пикселей, заголовок "Имя" -->
+
             <TableColumn fx:id="Patrynomic" prefWidth="120.0" text="Отчество" />
+              <!-- Столбец с идентификатором Patrynomic, шириной 120 пикселей, заголовок "Отчество" -->
+
             <TableColumn fx:id="BirthDate" prefWidth="120.0" text="Дата рождения" />
+              <!-- Столбец с идентификатором BirthDate, шириной 120 пикселей, заголовок "Дата рождения" -->
+
             <TableColumn fx:id="Category" prefWidth="120.0" text="Категория" />
+              <!-- Столбец с идентификатором Category, шириной 120 пикселей, заголовок "Категория" -->
+
         </columns>
+          <!-- Конец списка столбцов -->
+
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+             <!-- Установка политики изменения размеров столбцов, чтобы они равномерно заполняли ширину таблицы -->
+
          </columnResizePolicy>
+          <!-- Конец настройки политики изменения размеров столбцов -->
+
       </TableView>
+        <!-- Конец элемента TableView -->
+
       <TextField fx:id="SurNameTF" layoutX="113.0" layoutY="389.0" AnchorPane.bottomAnchor="136.0" AnchorPane.leftAnchor="113.0">
+          <!-- Текстовое поле с идентификатором SurNameTF, расположенное на координатах (113, 389), привязанное к нижнему (136 пикселей) и левому (113 пикселей) краям -->
+
          <font>
             <Font name="Segoe UI" size="12.0" />
+             <!-- Установка шрифта Segoe UI размером 12 для текста в поле -->
+
          </font></TextField>
+        <!-- Конец текстового поля SurNameTF -->
+
       <TextField fx:id="NameTF" layoutX="271.0" layoutY="389.0" AnchorPane.bottomAnchor="136.0" AnchorPane.leftAnchor="271.0">
+          <!-- Текстовое поле с идентификатором NameTF, расположенное на координатах (271, 389), привязанное к нижнему (136 пикселей) и левому (271 пикселей) краям -->
+
          <font>
             <Font name="Segoe UI" size="12.0" />
+             <!-- Установка шрифта Segoe UI размером 12 для текста в поле -->
+
          </font></TextField>
+        <!-- Конец текстового поля NameTF -->
+
       <TextField fx:id="PatrTF" layoutX="428.0" layoutY="389.0" AnchorPane.bottomAnchor="136.0" AnchorPane.leftAnchor="428.0" AnchorPane.rightAnchor="23.0">
-         <font>
+          <!-- Текстовое поле с идентификатором PatrTF, расположенное на координатах (428, 389), привязанное к нижнему (136 пикселей), левому (428 пикселей) и правому (23 пикселя) краям -->
+
+          <font>
             <Font name="Segoe UI" size="12.0" />
+              <!-- Установка шрифта Segoe UI размером 12 для текста в поле -->
+
          </font></TextField>
-      <TextField fx:id="CategoryTF" layoutX="113.0" layoutY="468.0" prefHeight="25.0" prefWidth="465.0" AnchorPane.bottomAnchor="57.0" AnchorPane.leftAnchor="113.0" AnchorPane.rightAnchor="22.0">
-         <font>
-            <Font name="Segoe UI" size="12.0" />
-         </font></TextField>
-      <Label layoutX="7.0" layoutY="386.0" prefHeight="32.0" prefWidth="98.0" text="ФИО" textFill="WHITE" AnchorPane.bottomAnchor="132.0" AnchorPane.leftAnchor="7.0">
-         <font>
+        <!-- Конец текстового поля PatrTF -->
+
+        <TextField fx:id="CategoryTF" layoutX="113.0" layoutY="468.0" prefHeight="25.0" prefWidth="465.0" AnchorPane.bottomAnchor="57.0" AnchorPane.leftAnchor="113.0" AnchorPane.rightAnchor="22.0">
+            <!-- Текстовое поле с идентификатором CategoryTF, расположенное на координатах (113, 468), с высотой 25 пикселей, шириной 465 пикселей, привязанное к нижнему (57 пикселей), левому (113 пикселей) и правому (22 пикселя) краям -->
+
+            <font>
+                <Font name="Segoe UI" size="12.0" />
+                <!-- Установка шрифта Segoe UI размером 12 для текста в поле -->
+
+            </font></TextField>
+        <!-- Конец текстового поля CategoryTF -->
+
+        <Label layoutX="7.0" layoutY="386.0" prefHeight="32.0" prefWidth="98.0" text="ФИО" textFill="WHITE" AnchorPane.bottomAnchor="132.0" AnchorPane.leftAnchor="7.0">
+            <!-- Метка с текстом "ФИО", расположенная на координатах (7, 386), с высотой 32 пикселя, шириной 98 пикселей, белым цветом текста, привязанная к нижнему (132 пикселя) и левому (7 пикселей) краям -->
+
+            <font>
             <Font name="Segoe UI Black" size="12.0" />
+                <!-- Установка шрифта Segoe UI размером 12 для текста в поле -->
+
+         </font>
+        </Label>
+        <!-- Конец метки ФИО -->
+
+        <Label layoutX="7.0" layoutY="426.0" prefHeight="32.0" prefWidth="98.0" text="Дата рождения" textFill="WHITE" AnchorPane.bottomAnchor="93.0" AnchorPane.leftAnchor="7.0">
+            <!-- Метка с текстом "Дата рождения", расположенная на координатах (7, 426), с высотой 32 пикселя, шириной 98 пикселей, белым цветом текста, привязанная к нижнему (93 пикселя) и левому (7 пикселей) краям -->
+
+            <font>
+            <Font name="Segoe UI Black" size="12.0" />
+                <!-- Установка шрифта Segoe UI размером 12 для текста в поле -->
+
          </font>
       </Label>
-      <Label layoutX="7.0" layoutY="426.0" prefHeight="32.0" prefWidth="98.0" text="Дата рождения" textFill="WHITE" AnchorPane.bottomAnchor="93.0" AnchorPane.leftAnchor="7.0">
-         <font>
-            <Font name="Segoe UI Black" size="12.0" />
-         </font>
-      </Label>
+        <!-- Конец метки Дата рождения -->
+
       <Label layoutX="7.0" layoutY="465.0" prefHeight="32.0" prefWidth="98.0" text="Категория" textFill="WHITE" AnchorPane.bottomAnchor="53.0" AnchorPane.leftAnchor="7.0">
+          <!-- Метка с текстом "Категория", расположенная на координатах (7, 465), с высотой 32 пикселя, шириной 98 пикселей, белым цветом текста, привязанная к нижнему (53 пикселя) и левому (7 пикселей) краям -->
+
          <font>
             <Font name="Segoe UI Black" size="12.0" />
+             <!-- Установка шрифта Segoe UI размером 12 для текста в поле -->
+
          </font>
       </Label>
-      <DatePicker fx:id="BirthDateTF" layoutX="113.0" layoutY="429.0" prefHeight="25.0" prefWidth="465.0" AnchorPane.bottomAnchor="96.0" AnchorPane.leftAnchor="113.0" AnchorPane.rightAnchor="22.0" />
-      <Label fx:id="Status" layoutX="5.0" layoutY="497.0" prefHeight="17.0" prefWidth="592.0" textFill="WHITE">
-         <font>
+        <!-- Конец метки Категория -->
+
+        <DatePicker fx:id="BirthDateTF" layoutX="113.0" layoutY="429.0" prefHeight="25.0" prefWidth="465.0" AnchorPane.bottomAnchor="96.0" AnchorPane.leftAnchor="113.0" AnchorPane.rightAnchor="22.0" />
+        <!-- Поле выбора даты с идентификатором BirthDateTF, расположенное на координатах (113, 429), с высотой 25 пикселей, шириной 465 пикселей, привязанное к нижнему (96 пикселей), левому (113 пикселей) и правому (22 пикселя) краям -->
+
+        <Label fx:id="Status" layoutX="5.0" layoutY="497.0" prefHeight="17.0" prefWidth="592.0" textFill="WHITE">
+            <!-- Метка с идентификатором Status, расположенная на координатах (5, 497), с высотой 17 пикселей, шириной 592 пикселя, белым цветом текста -->
+
+            <font>
             <Font name="Segoe UI Black" size="12.0" />
+                <!-- Установка шрифта Segoe UI размером 12 для текста в поле -->
+
          </font></Label>
+        <!-- Конец метки Status -->
+
    </children>
+    <!-- Конец секции дочерних элементов -->
+
 </AnchorPane>
+        <!-- Конец корневого контейнера AnchorPane -->
