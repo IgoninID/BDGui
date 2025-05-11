@@ -224,7 +224,7 @@ public class DBController {
         // инициализация selectionmodel
         selectionModel = DBTable.getSelectionModel();
 
-        // Добавление слушателя для обновления полей ввода при изменении выбранного объекта в таблице
+        // Добавление слушателя для обновления полей ввода при выборе объекта в таблице
         selectionModel.selectedItemProperty().addListener(new ChangeListener<Client>() {
             @Override
             public void changed(ObservableValue<? extends Client> observableValue, Client oldClient, Client newClient) {
