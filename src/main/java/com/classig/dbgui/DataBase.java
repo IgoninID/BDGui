@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.LocalDate;
 
 /**
  * Класс база данных
@@ -25,13 +26,13 @@ public class DataBase {
      * @param birth дата рождения
      * @param categ категория
      */
-    public void AddClient(String surname, String name, String patr, String birth, String categ)
+    public void AddClient(String surname, String name, String patr, LocalDate birth, String categ)
     {
         Client client = new Client(surname, name, patr, birth, categ);
         listClient.add(client);
     }
 
-    public int FindClient(String surname, String name, String patr, String birth, String categ)
+    public int FindClient(String surname, String name, String patr, LocalDate birth, String categ)
     {
         if (patr.isEmpty())
         {
@@ -45,7 +46,7 @@ public class DataBase {
         {
             if (
                     listClient.get(i).getName().equalsIgnoreCase(name) && listClient.get(i).getSurName().equalsIgnoreCase(surname) &&
-                    listClient.get(i).getPatrynomic().equalsIgnoreCase(patr) && listClient.get(i).getBirthDate().equalsIgnoreCase(birth) &&
+                    listClient.get(i).getPatrynomic().equalsIgnoreCase(patr) && listClient.get(i).getBirthDate().equals(birth) &&
                     listClient.get(i).getCategory().equalsIgnoreCase(categ)
                )
             {
@@ -67,7 +68,7 @@ public class DataBase {
         }
         else
         {
-            throw new OutOfMemoryError("Индекс за пределами списка");
+            throw new OutOfMemoryError("Клиента с таким индексом нет");
         }
     }
 
@@ -80,7 +81,7 @@ public class DataBase {
      * @param categ категория
      * @param i индекс клиента в списке
      */
-    public void EditClient(String surname, String name, String patr, String birth, String categ, int i)
+    public void EditClient(String surname, String name, String patr, LocalDate birth, String categ, int i)
     {
         if (i < listClient.size()) {
             listClient.get(i).setCategory(categ);
@@ -110,7 +111,7 @@ public class DataBase {
                 while ((line = reader.readLine()) != null)
                 {
                     String[] part = line.split(" ; ");
-                    listClient.add(new Client(part[0], part[1], part[2], part[3], part[4]));
+                    listClient.add(new Client(part[0], part[1], part[2], LocalDate.parse(part[3]), part[4]));
                 }
             }
             catch (IOException e)

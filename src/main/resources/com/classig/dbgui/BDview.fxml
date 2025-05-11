@@ -8,9 +8,9 @@
    <children>
       <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="600.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <menus>
-          <Menu mnemonicParsing="false" text="Файл">
+          <Menu fx:id="FileW" mnemonicParsing="false" text="Файл">
             <items>
-              <MenuItem fx:id="CLose" mnemonicParsing="false" onAction="#onClickClose" text="Закрыть" />
+              <MenuItem fx:id="Close" mnemonicParsing="false" onAction="#onClickClose" text="Закрыть" />
                   <MenuItem fx:id="Save" mnemonicParsing="false" onAction="#onClickSave" text="Сохранить" />
                   <MenuItem fx:id="Load" mnemonicParsing="false" onAction="#onClickLoad" text="Загрузить" />
             </items>
@@ -20,7 +20,7 @@
               <MenuItem fx:id="Delete" mnemonicParsing="false" onAction="#onClickDel" text="Удалить" />
                   <MenuItem fx:id="Add" mnemonicParsing="false" onAction="#onClickAdd" text="Добавить" />
                   <MenuItem fx:id="Edit" mnemonicParsing="false" onAction="#onClickEdit" text="Редактировать" />
-                  <MenuItem fx:id="Delete1" mnemonicParsing="false" onAction="#onClickFind" text="Найти" />
+                  <MenuItem fx:id="Find" mnemonicParsing="false" onAction="#onClickFind" text="Найти" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Помощь">
@@ -30,17 +30,20 @@
           </Menu>
         </menus>
       </MenuBar>
-      <ToolBar layoutX="11.0" layoutY="352.0" prefHeight="43.0" prefWidth="600.0" style="-fx-background-color: lightgreen;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <ToolBar layoutX="11.0" layoutY="352.0" prefHeight="32.0" prefWidth="600.0" style="-fx-background-color: lightgreen;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
         <items>
-          <Button fx:id="AddB" mnemonicParsing="false" onAction="#onClickAdd" text="Добавить" />
+          <Button fx:id="AddB" mnemonicParsing="false" onAction="#onClickAdd" text="Добавить">
+               <font>
+                  <Font name="Segoe UI" size="12.0" />
+               </font></Button>
             <Button fx:id="DeleteB" layoutX="10.0" layoutY="13.0" mnemonicParsing="false" onAction="#onClickDel" text="Удалить" />
             <Button fx:id="EditB" layoutX="66.0" layoutY="13.0" mnemonicParsing="false" onAction="#onClickEdit" text="Редактировать" />
             <Button fx:id="SaveB" layoutX="147.0" layoutY="13.0" mnemonicParsing="false" onAction="#onClickSave" text="Сохранить" />
             <Button fx:id="LoadB" layoutX="249.0" layoutY="13.0" mnemonicParsing="false" onAction="#onClickLoad" text="Загрузить" />
-            <Button fx:id="LoadB1" layoutX="327.0" layoutY="14.0" mnemonicParsing="false" onAction="#onClickFind" text="Найти" />
+            <Button fx:id="FindB" layoutX="327.0" layoutY="14.0" mnemonicParsing="false" onAction="#onClickFind" text="Найти" />
         </items>
       </ToolBar>
-      <TableView fx:id="DBTable" layoutY="52.0" prefHeight="209.0" prefWidth="600.0" AnchorPane.bottomAnchor="175.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
+      <TableView fx:id="DBTable" layoutY="52.0" prefHeight="209.0" prefWidth="600.0" AnchorPane.bottomAnchor="175.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
         <columns>
           <TableColumn fx:id="SurName" prefWidth="120.0" text="Фамилия" />
           <TableColumn fx:id="Name" prefWidth="120.0" text="Имя" />
@@ -52,11 +55,22 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <TextField fx:id="SurNameTF" layoutX="113.0" layoutY="389.0" AnchorPane.bottomAnchor="136.0" AnchorPane.leftAnchor="113.0" />
-      <TextField fx:id="NameTF" layoutX="271.0" layoutY="389.0" AnchorPane.bottomAnchor="136.0" AnchorPane.leftAnchor="271.0" />
-      <TextField fx:id="BirthDateTF" layoutX="113.0" layoutY="429.0" prefHeight="25.0" prefWidth="465.0" AnchorPane.bottomAnchor="96.0" AnchorPane.leftAnchor="113.0" AnchorPane.rightAnchor="22.0" />
-      <TextField fx:id="PatrTF" layoutX="428.0" layoutY="389.0" AnchorPane.bottomAnchor="136.0" AnchorPane.leftAnchor="428.0" AnchorPane.rightAnchor="23.0" />
-      <TextField fx:id="CategoryTF" layoutX="113.0" layoutY="468.0" prefHeight="25.0" prefWidth="465.0" AnchorPane.bottomAnchor="57.0" AnchorPane.leftAnchor="113.0" AnchorPane.rightAnchor="22.0" />
+      <TextField fx:id="SurNameTF" layoutX="113.0" layoutY="389.0" AnchorPane.bottomAnchor="136.0" AnchorPane.leftAnchor="113.0">
+         <font>
+            <Font name="Segoe UI" size="12.0" />
+         </font></TextField>
+      <TextField fx:id="NameTF" layoutX="271.0" layoutY="389.0" AnchorPane.bottomAnchor="136.0" AnchorPane.leftAnchor="271.0">
+         <font>
+            <Font name="Segoe UI" size="12.0" />
+         </font></TextField>
+      <TextField fx:id="PatrTF" layoutX="428.0" layoutY="389.0" AnchorPane.bottomAnchor="136.0" AnchorPane.leftAnchor="428.0" AnchorPane.rightAnchor="23.0">
+         <font>
+            <Font name="Segoe UI" size="12.0" />
+         </font></TextField>
+      <TextField fx:id="CategoryTF" layoutX="113.0" layoutY="468.0" prefHeight="25.0" prefWidth="465.0" AnchorPane.bottomAnchor="57.0" AnchorPane.leftAnchor="113.0" AnchorPane.rightAnchor="22.0">
+         <font>
+            <Font name="Segoe UI" size="12.0" />
+         </font></TextField>
       <Label layoutX="7.0" layoutY="386.0" prefHeight="32.0" prefWidth="98.0" text="ФИО" textFill="WHITE" AnchorPane.bottomAnchor="132.0" AnchorPane.leftAnchor="7.0">
          <font>
             <Font name="Segoe UI Black" size="12.0" />
@@ -72,5 +86,10 @@
             <Font name="Segoe UI Black" size="12.0" />
          </font>
       </Label>
+      <DatePicker fx:id="BirthDateTF" layoutX="113.0" layoutY="429.0" prefHeight="25.0" prefWidth="465.0" AnchorPane.bottomAnchor="96.0" AnchorPane.leftAnchor="113.0" AnchorPane.rightAnchor="22.0" />
+      <Label fx:id="Status" layoutX="5.0" layoutY="497.0" prefHeight="17.0" prefWidth="592.0" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Black" size="12.0" />
+         </font></Label>
    </children>
 </AnchorPane>

@@ -1,5 +1,7 @@
 package com.classig.dbgui;
 
+import java.time.LocalDate;
+
 /**
  * Класс клиент больницы
  * Автор: Игонин В.Ю
@@ -24,7 +26,7 @@ public class Client {
     /**
      * Поле дата рождения
      */
-    private String BirthDate;
+    private LocalDate BirthDate;
 
     /**
      * Поле категория
@@ -39,7 +41,7 @@ public class Client {
      * @param birthDate дата рождения
      * @param category категория
      */
-    Client(String surname, String name, String patrynomic, String birthDate, String category)
+    Client(String surname, String name, String patrynomic, LocalDate birthDate, String category)
     {
         setSurName(surname);
         setName(name);
@@ -95,9 +97,9 @@ public class Client {
      * Правило ввода - не может быть пустым
      * @param birthdate дата рождения
      */
-    public void setBirthDate(String birthdate)
+    public void setBirthDate(LocalDate birthdate)
     {
-        if (!birthdate.isEmpty())
+        if (!birthdate.toString().isEmpty())
         {
             this.BirthDate = birthdate;
         }
@@ -150,7 +152,7 @@ public class Client {
      * Получение даты рождения
      * @return дата рождения клиента
      */
-    public final String getBirthDate()
+    public final LocalDate getBirthDate()
     {
         return BirthDate;
     }
