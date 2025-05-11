@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <!-- Объявление версии XML и кодировки файла -->
-
-
 <!-- Импорт всех классов из пакета javafx.scene.control для использования элементов управления, таких как кнопки, таблицы и т.д. -->
+
 <?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <!-- Импорт всех классов из пакета javafx.scene.layout для использования контейнеров компоновки, таких как AnchorPane -->
-<?import javafx.scene.layout.*?>
-
 <!-- Импорт классов из пакета javafx.scene.text для работы с текстовыми элементами, такими как Font -->
-<?import javafx.scene.text.*?>
+<!-- Конец корневого контейнера AnchorPane -->
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="600.0" style="-fx-background-color: #5599FF;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.classig.dbgui.DBController">
     <!-- Определение корневого контейнера AnchorPane с бесконечными максимальными/минимальными размерами, предпочтительными размерами 550x600 пикселей, голубым фоном (#5599FF), указанием пространства имен JavaFX и контроллера для обработки событий -->
@@ -236,8 +236,8 @@
         <DatePicker fx:id="BirthDateTF" layoutX="113.0" layoutY="429.0" prefHeight="25.0" prefWidth="465.0" AnchorPane.bottomAnchor="96.0" AnchorPane.leftAnchor="113.0" AnchorPane.rightAnchor="22.0" />
         <!-- Поле выбора даты с идентификатором BirthDateTF, расположенное на координатах (113, 429), с высотой 25 пикселей, шириной 465 пикселей, привязанное к нижнему (96 пикселей), левому (113 пикселей) и правому (22 пикселя) краям -->
 
-        <Label fx:id="Status" layoutX="5.0" layoutY="497.0" prefHeight="17.0" prefWidth="592.0" textFill="WHITE">
-            <!-- Метка с идентификатором Status, расположенная на координатах (5, 497), с высотой 17 пикселей, шириной 592 пикселя, белым цветом текста -->
+        <Label fx:id="Status" layoutX="5.0" layoutY="497.0" prefHeight="17.0" prefWidth="592.0" textFill="WHITE" AnchorPane.bottomAnchor="36.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0">
+            <!-- Метка с идентификатором Status, расположенная на координатах (5, 497), с высотой 17 пикселей, шириной 592 пикселя, белым цветом текста, привязанное к нижнему (36 пикселей), левому (5 пикселей) и правому (5 пикселей) краям -->
 
             <font>
             <Font name="Segoe UI Black" size="12.0" />
@@ -250,4 +250,3 @@
     <!-- Конец секции дочерних элементов -->
 
 </AnchorPane>
-        <!-- Конец корневого контейнера AnchorPane -->
