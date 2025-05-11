@@ -24,47 +24,86 @@ public class DBController {
     MenuItem About;
 
     /**
-     *
+     * Строка состояния
      */
     @FXML
     Label Status;
 
+    /**
+     * Кнопка меню сохранить
+     */
     @FXML
     MenuItem Save;
 
+    /**
+     * Кнопка меню загрузить
+     */
     @FXML
     MenuItem Load;
 
+    /**
+     * Кнопка меню закрыть
+     */
     @FXML
     MenuItem Close;
 
+    /**
+     * Кнопка меню добавить
+     */
     @FXML
     MenuItem Add;
 
+    /**
+     * Кнопка меню удалить
+     */
     @FXML
     MenuItem Delete;
 
+    /**
+     * Кнопка меню редактировать
+     */
     @FXML
     MenuItem Edit;
 
+    /**
+     * Кнопка меню найти
+     */
     @FXML
     MenuItem Find;
 
+    /**
+     * Кнопка сохранить
+     */
     @FXML
     Button SaveB;
 
+    /**
+     * Кнопка загрузить
+     */
     @FXML
     Button LoadB;
 
+    /**
+     * Кнопка добавить
+     */
     @FXML
     Button AddB;
 
+    /**
+     * Кнопка удалить
+     */
     @FXML
     Button DeleteB;
 
+    /**
+     * Кнопка редактировать
+     */
     @FXML
     Button EditB;
 
+    /**
+     * Кнопка найти
+     */
     @FXML
     Button FindB;
 
@@ -140,7 +179,7 @@ public class DBController {
     private final DataBase db = new DataBase();
 
     /**
-     *
+     * selectionmodel для получения доступа к объекту показанному в таблице
      */
     private TableView.TableViewSelectionModel<Client> selectionModel;
 
@@ -182,10 +221,10 @@ public class DBController {
         // связывание таблицы и базы данных
         DBTable.setItems(db.getListClient());
 
-        //
+        // инициализация selectionmodel
         selectionModel = DBTable.getSelectionModel();
 
-        //
+        // Добавление слушателя для обновления полей ввода при изменении выбранного объекта в таблице
         selectionModel.selectedItemProperty().addListener(new ChangeListener<Client>() {
             @Override
             public void changed(ObservableValue<? extends Client> observableValue, Client oldClient, Client newClient) {
@@ -205,7 +244,7 @@ public class DBController {
     }
 
     /**
-     * Нажатие на кнопку о программе
+     * Нажатие на кнопку меню о программе
      */
     public void onClickAbout()
     {
@@ -217,219 +256,223 @@ public class DBController {
     }
 
     /**
-     * Нажатие на кнопку добавить
+     * Нажатие на кнопку/кнопку меню добавить
      */
     public void onClickAdd()
     {
-        final String noerr = "-fx-background-color: white;"; //
-        final String err = "-fx-background-color: pink;"; //
-        final String noerrstatus = "-fx-text-fill : green";
-        final String errstatus = "-fx-text-fill : red";
+        final String noerr = "-fx-background-color: white;"; // цвет поля по умолчанию
+        final String err = "-fx-background-color: pink;"; // цвет поля при ошибке
+        final String noerrstatus = "-fx-text-fill : green"; // цвет текста строки состояния без ошибки
+        final String errstatus = "-fx-text-fill : red"; // цвет текста строки состояния при возникновении ошибки
 
-        SurNameTF.setStyle(noerr); //
+        SurNameTF.setStyle(noerr); // задаем цвет полей по умолчанию
         NameTF.setStyle(noerr);
         BirthDateTF.getEditor().setStyle(noerr);
-        if (!SurNameTF.getText().isEmpty() && !NameTF.getText().isEmpty() && !BirthDateTF.getEditor().getText().isEmpty()) //
+
+        if (!SurNameTF.getText().isEmpty() && !NameTF.getText().isEmpty() && !BirthDateTF.getEditor().getText().isEmpty()) // проверяем введены ли обязательные поля
         {
-            db.AddClient(SurNameTF.getText(), NameTF.getText(), PatrTF.getText(), BirthDateTF.getValue(), CategoryTF.getText()); //
-            Status.setText("Клиент добавлен");
-            Status.setStyle(noerrstatus);
+            db.AddClient(SurNameTF.getText(), NameTF.getText(), PatrTF.getText(), BirthDateTF.getValue(), CategoryTF.getText()); // добавляем клиента в базу данных если введены
+            Status.setText("Клиент добавлен"); // обновляем строку состояния
+            Status.setStyle(noerrstatus); // задаем цвет текста строки состояния без ошибок
         }
         else
         {
-            if (SurNameTF.getText().isEmpty()) //
+            if (SurNameTF.getText().isEmpty()) // если не введена фамилия
             {
-                SurNameTF.setStyle(err); //
-                Status.setText("Пустая фамилия");
-                Status.setStyle(errstatus);
+                SurNameTF.setStyle(err); // задаем цвет поля ошибка
+                Status.setText("Пустая фамилия"); // обновляем строку состояния
+                Status.setStyle(errstatus); // задаем цвет текста строки состояния ошибка
             }
-            if (NameTF.getText().isEmpty()) //
+            if (NameTF.getText().isEmpty()) // если не введено имя
             {
-                NameTF.setStyle(err); //
-                Status.setText("Пустое имя");
-                Status.setStyle(errstatus);
+                NameTF.setStyle(err); // задаем цвет поля ошибка
+                Status.setText("Пустое имя"); // обновляем строку состояния
+                Status.setStyle(errstatus); // задаем цвет текста строки состояния ошибка
             }
-            if (BirthDateTF.getEditor().getText().isEmpty()) //
+            if (BirthDateTF.getEditor().getText().isEmpty()) // если не введена дата рождения
             {
-                BirthDateTF.getEditor().setStyle(err); //
-                Status.setText("Пустая дата рождения");
-                Status.setStyle(errstatus);
+                BirthDateTF.getEditor().setStyle(err); // задаем цвет поля ошибка
+                Status.setText("Пустая дата рождения"); // обновляем строку состояния
+                Status.setStyle(errstatus); // задаем цвет текста строки состояния ошибка
             }
         }
     }
 
     /**
-     * Нажатие на кнопку редактировать
+     * Нажатие на кнопку/кнопку меню редактировать
      */
     public void onClickEdit()
     {
-        final String noerr = "-fx-background-color: white;"; //
-        final String err = "-fx-background-color: pink;"; //
-        final String noerrstatus = "-fx-text-fill : green";
-        final String errstatus = "-fx-text-fill : red";
+        final String noerr = "-fx-background-color: white;"; // цвет поля по умолчанию
+        final String err = "-fx-background-color: pink;"; // цвет поля при ошибке
+        final String noerrstatus = "-fx-text-fill : green"; // цвет текста строки состояния без ошибки
+        final String errstatus = "-fx-text-fill : red"; // цвет текста строки состояния при возникновении ошибки
 
-        SurNameTF.setStyle(noerr); //
-        NameTF.setStyle(noerr); //
-        BirthDateTF.getEditor().setStyle(noerr); //
-        if (!SurNameTF.getText().isEmpty() && !NameTF.getText().isEmpty() && !BirthDateTF.getEditor().getText().isEmpty()) //
+        SurNameTF.setStyle(noerr); // задаем цвет полей по умолчанию
+        NameTF.setStyle(noerr);
+        BirthDateTF.getEditor().setStyle(noerr);
+        if (!SurNameTF.getText().isEmpty() && !NameTF.getText().isEmpty() && !BirthDateTF.getEditor().getText().isEmpty()) // проверяем введены ли обязательные поля
         {
             try
             {
-                if (selectionModel.getFocusedIndex() != -1)
+                if (selectionModel.getFocusedIndex() != -1) // если не пустая база данных
                 {
-                    db.EditClient(SurNameTF.getText(), NameTF.getText(), PatrTF.getText(), BirthDateTF.getValue(), CategoryTF.getText(), selectionModel.getFocusedIndex()); //
-                    DBTable.refresh(); //
-                    Status.setText("Информация о клиенте " + (selectionModel.getFocusedIndex()+1) + " отредактирована");
-                    Status.setStyle(noerrstatus);
+                    db.EditClient(SurNameTF.getText(), NameTF.getText(), PatrTF.getText(), BirthDateTF.getValue(), CategoryTF.getText(), selectionModel.getFocusedIndex());  // редактируем клиента в базе данных если введены
+                    DBTable.refresh(); // обновляем таблицу
+                    Status.setText("Информация о клиенте " + (selectionModel.getFocusedIndex()+1) + " отредактирована"); // обновляем строку состояния
+                    Status.setStyle(noerrstatus); // задаем цвет текста строки состояния без ошибок
                 }
-                else
+                else // если база данных пуста
                 {
-                    Status.setText("Пустая база данных");
-                    Status.setStyle(errstatus);
+                    Status.setText("Пустая база данных"); // обновляем строку состояния
+                    Status.setStyle(errstatus); // задаем цвет текста строки состояния ошибка
                 }
             }
-            catch (OutOfMemoryError e)
+            catch (OutOfMemoryError e) // если индекс за пределами списка
             {
-                Status.setText(e.getMessage());
-                Status.setStyle(errstatus);
+                Status.setText(e.getMessage()); // обновляем строку состояния
+                Status.setStyle(errstatus); // задаем цвет текста строки состояния ошибка
             }
         }
         else
         {
-            if (SurNameTF.getText().isEmpty()) //
+            if (SurNameTF.getText().isEmpty()) // если не введена фамилия
             {
-                SurNameTF.setStyle(err); //
-                Status.setText("Пустая фамилия");
-                Status.setStyle(errstatus);
+                SurNameTF.setStyle(err); // задаем цвет поля ошибка
+                Status.setText("Пустая фамилия"); // обновляем строку состояния
+                Status.setStyle(errstatus); // задаем цвет текста строки состояния ошибка
             }
-            if (NameTF.getText().isEmpty()) //
+            if (NameTF.getText().isEmpty()) // если не введено имя
             {
-                NameTF.setStyle(err); //
-                Status.setText("Пустое имя");
-                Status.setStyle(errstatus);
+                NameTF.setStyle(err); // задаем цвет поля ошибка
+                Status.setText("Пустое имя"); // обновляем строку состояния
+                Status.setStyle(errstatus); // задаем цвет текста строки состояния ошибка
             }
-            if (BirthDateTF.getEditor().getText().isEmpty()) //
+            if (BirthDateTF.getEditor().getText().isEmpty()) // если не введена дата рождения
             {
-                BirthDateTF.getEditor().setStyle(err); //
-                Status.setText("Пустая дата рождения");
-                Status.setStyle(errstatus);
-            }
-        }
-    }
-
-    public void onClickFind()
-    {
-        final String noerr = "-fx-background-color: white;"; //
-        final String err = "-fx-background-color: pink;"; //
-        final String noerrstatus = "-fx-text-fill : green";
-        final String errstatus = "-fx-text-fill : red";
-
-        SurNameTF.setStyle(noerr); //
-        NameTF.setStyle(noerr); //
-        BirthDateTF.getEditor().setStyle(noerr); //
-        if (!SurNameTF.getText().isEmpty() && !NameTF.getText().isEmpty() && !BirthDateTF.getEditor().getText().isEmpty()) //
-        {
-
-            try
-            {
-                int i = db.FindClient(SurNameTF.getText(), NameTF.getText(), PatrTF.getText(), BirthDateTF.getValue(), CategoryTF.getText()); //
-                selectionModel.select(i);
-                Status.setText("Клиент найден "+(i+1));
-                Status.setStyle(noerrstatus);
-            }
-            catch (OutOfMemoryError e)
-            {
-                Status.setText(e.getMessage());
-                Status.setStyle(errstatus);
-            }
-        }
-        else
-        {
-            if (SurNameTF.getText().isEmpty()) //
-            {
-                SurNameTF.setStyle(err); //
-                Status.setText("Пустая фамилия");
-                Status.setStyle(errstatus);
-            }
-            if (NameTF.getText().isEmpty()) //
-            {
-                NameTF.setStyle(err); //
-                Status.setText("Пустое имя");
-                Status.setStyle(errstatus);
-            }
-            if (BirthDateTF.getEditor().getText().isEmpty()) //
-            {
-                BirthDateTF.getEditor().setStyle(err); //
-                Status.setText("Пустая дата рождения");
-                Status.setStyle(errstatus);
+                BirthDateTF.getEditor().setStyle(err); // задаем цвет поля ошибка
+                Status.setText("Пустая дата рождения"); // обновляем строку состояния
+                Status.setStyle(errstatus); // задаем цвет текста строки состояния ошибка
             }
         }
     }
 
     /**
-     * Нажатие на кнопку сохранить
+     * Нажатие на кнопку/кнопку меню найти
+     */
+    public void onClickFind()
+    {
+        final String noerr = "-fx-background-color: white;"; // цвет поля по умолчанию
+        final String err = "-fx-background-color: pink;"; // цвет поля при ошибке
+        final String noerrstatus = "-fx-text-fill : green"; // цвет текста строки состояния без ошибки
+        final String errstatus = "-fx-text-fill : red"; // цвет текста строки состояния при возникновении ошибки
+
+        SurNameTF.setStyle(noerr); // задаем цвет полей по умолчанию
+        NameTF.setStyle(noerr);
+        BirthDateTF.getEditor().setStyle(noerr);
+        if (!SurNameTF.getText().isEmpty() && !NameTF.getText().isEmpty() && !BirthDateTF.getEditor().getText().isEmpty()) // проверяем введены ли обязательные поля
+        {
+
+            try
+            {
+                int i = db.FindClient(SurNameTF.getText(), NameTF.getText(), PatrTF.getText(), BirthDateTF.getValue(), CategoryTF.getText()); // ищем клиента в базе данных если введены
+                selectionModel.select(i); // указываем клиента в таблице
+                Status.setText("Клиент найден "+(i+1)); // обновляем строку состояния
+                Status.setStyle(noerrstatus); // задаем цвет текста строки состояния без ошибок
+            }
+            catch (OutOfMemoryError e) // если не найден или индекс за пределами массива
+            {
+                Status.setText(e.getMessage()); // обновляем строку состояния
+                Status.setStyle(errstatus); // задаем цвет текста строки состояния ошибка
+            }
+        }
+        else
+        {
+            if (SurNameTF.getText().isEmpty()) // если не введена фамилия
+            {
+                SurNameTF.setStyle(err); // задаем цвет поля ошибка
+                Status.setText("Пустая фамилия"); // обновляем строку состояния
+                Status.setStyle(errstatus); // задаем цвет текста строки состояния ошибка
+            }
+            if (NameTF.getText().isEmpty()) // если не введено имя
+            {
+                NameTF.setStyle(err); // задаем цвет поля ошибка
+                Status.setText("Пустое имя"); // обновляем строку состояния
+                Status.setStyle(errstatus); // задаем цвет текста строки состояния ошибка
+            }
+            if (BirthDateTF.getEditor().getText().isEmpty()) // если не введена дата рождения
+            {
+                BirthDateTF.getEditor().setStyle(err); // задаем цвет поля ошибка
+                Status.setText("Пустая дата рождения"); // обновляем строку состояния
+                Status.setStyle(errstatus); // задаем цвет текста строки состояния ошибка
+            }
+        }
+    }
+
+    /**
+     * Нажатие на кнопку/кнопку меню сохранить
      */
     public void onClickSave()
     {
-        final String noerrstatus = "-fx-text-fill : green";
-        final String errstatus = "-fx-text-fill : red";
+        final String noerrstatus = "-fx-text-fill : green"; // цвет текста строки состояния без ошибки
+        final String errstatus = "-fx-text-fill : red"; // цвет текста строки состояния при возникновении ошибки
 
-        FileChooser fileChooser = new FileChooser(); //
-        fileChooser.setTitle("Сохранить базу данных"); //
+        FileChooser fileChooser = new FileChooser(); // диалоговое окно с выбором файла
+        fileChooser.setTitle("Сохранить базу данных"); // задаем заголовок диалогового окна
 
-        fileChooser.getExtensionFilters().addAll( //
+        fileChooser.getExtensionFilters().addAll( // добавляем фильтры файлов
                 new FileChooser.ExtensionFilter("Текстовые файлы", "*.txt"),
                 new FileChooser.ExtensionFilter("Все файлы", "*.*")
         );
 
-        File file = fileChooser.showSaveDialog(DBTable.getScene().getWindow()); //
+        File file = fileChooser.showSaveDialog(DBTable.getScene().getWindow()); // показываем диалоговое окно для сохранения
 
-        if (file != null) //
+        if (file != null) // если файл выбран
         {
             try {
-                db.Save(file.getAbsolutePath()); //
-                Status.setText("База данных сохранена по адресу "+file.getAbsolutePath());
-                Status.setStyle(noerrstatus);
+                db.Save(file.getAbsolutePath()); // сохраняем базу данных в файл
+                Status.setText("База данных сохранена по адресу "+file.getAbsolutePath()); // обновляем строку состояния
+                Status.setStyle(noerrstatus); // задаем цвет текста строки состояния без ошибок
             }
-            catch (Exception e)
+            catch (Exception e) // произошла ошибка
             {
-                Status.setText("База данных не сохранена");
-                Status.setStyle(errstatus);
+                Status.setText("База данных не сохранена"); // обновляем строку состояния
+                Status.setStyle(errstatus); // задаем цвет текста строки состояния ошибка
                 e.printStackTrace();
             }
         }
     }
 
     /**
-     * Нажатие на кнопку загрузить
+     * Нажатие на кнопку/кнопку меню загрузить
      */
     public void onClickLoad()
     {
-        final String noerrstatus = "-fx-text-fill : green";
-        final String errstatus = "-fx-text-fill : red";
+        final String noerrstatus = "-fx-text-fill : green"; // цвет текста строки состояния без ошибки
+        final String errstatus = "-fx-text-fill : red"; // цвет текста строки состояния при возникновении ошибки
 
-        FileChooser fileChooser = new FileChooser(); //
-        fileChooser.setTitle("Загрузить базу данных"); //
+        FileChooser fileChooser = new FileChooser(); // диалоговое окно с выбором файла
+        fileChooser.setTitle("Загрузить базу данных"); // задаем заголовок диалогового окна
 
-        fileChooser.getExtensionFilters().addAll( //
+        fileChooser.getExtensionFilters().addAll( // добавляем фильтры файлов
                 new FileChooser.ExtensionFilter("Текстовые файлы", "*.txt"),
                 new FileChooser.ExtensionFilter("Все файлы", "*.*")
         );
 
-        File file = fileChooser.showOpenDialog(DBTable.getScene().getWindow()); //
+        File file = fileChooser.showOpenDialog(DBTable.getScene().getWindow()); // показываем диалоговое окно для загрузкм
 
-        if (file != null) //
+        if (file != null) // если файл выбран
         {
             try {
-                DBTable.getItems().clear(); //
-                db.Load(file.getAbsolutePath()); //
-                Status.setText("База данных загружена из файла по адресу "+file.getAbsolutePath());
-                Status.setStyle(noerrstatus);
+                DBTable.getItems().clear(); // очищаем базу данных в таблице
+                db.Load(file.getAbsolutePath()); // загружаем базу данных
+                Status.setText("База данных загружена из файла по адресу "+file.getAbsolutePath()); // обновляем строку состояния
+                Status.setStyle(noerrstatus); // задаем цвет текста строки состояния без ошибок
             }
-            catch (Exception e)
+            catch (Exception e) // произошла ошибка
             {
-                Status.setText("База данных не загружена");
-                Status.setStyle(errstatus);
+                Status.setText("База данных не загружена"); // обновляем строку состояния
+                Status.setStyle(errstatus); // задаем цвет текста строки состояния ошибка
                 e.printStackTrace();
             }
         }
@@ -440,35 +483,35 @@ public class DBController {
      */
     public void onClickClose()
     {
-        onClickSave(); //
-        DBTable.getScene().getWindow().hide(); //
+        onClickSave(); // сохраняем базу данных
+        DBTable.getScene().getWindow().hide(); // закрываем окно
     }
 
     /**
-     * Нажатие на кнопку удалить
+     * Нажатие на кнопку/кнопку меню удалить
      */
     public void onClickDel()
     {
-        final String noerrstatus = "-fx-text-fill : green";
-        final String errstatus = "-fx-text-fill : red";
+        final String noerrstatus = "-fx-text-fill : green"; // цвет текста строки состояния без ошибки
+        final String errstatus = "-fx-text-fill : red"; // цвет текста строки состояния при возникновении ошибки
 
         try {
-            if (selectionModel.getFocusedIndex() != -1)
+            if (selectionModel.getFocusedIndex() != -1) // если база данных не пуста
             {
                 db.DelClient(selectionModel.getFocusedIndex()); //
-                Status.setText("Клиент удален");
-                Status.setStyle(noerrstatus);
+                Status.setText("Клиент удален"); // обновляем строку состояния
+                Status.setStyle(noerrstatus); // задаем цвет текста строки состояния без ошибок
             }
-            else
+            else // если пустая база данных
             {
-                Status.setText("Пустая база данных");
-                Status.setStyle(errstatus);
+                Status.setText("Пустая база данных"); // обновляем строку состояния
+                Status.setStyle(errstatus); // задаем цвет текста строки состояния ошибка
             }
         }
-        catch (OutOfMemoryError e)
+        catch (OutOfMemoryError e) // произошла ошибка
         {
-            Status.setText(e.getMessage());
-            Status.setStyle(errstatus);
+            Status.setText(e.getMessage()); // обновляем строку состояния
+            Status.setStyle(errstatus); // задаем цвет текста строки состояния ошибка
         }
     }
 

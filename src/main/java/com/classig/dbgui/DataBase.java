@@ -28,32 +28,41 @@ public class DataBase {
      */
     public void AddClient(String surname, String name, String patr, LocalDate birth, String categ)
     {
-        Client client = new Client(surname, name, patr, birth, categ);
-        listClient.add(client);
+        Client client = new Client(surname, name, patr, birth, categ); // создаем клиента
+        listClient.add(client); // добавляем в список
     }
 
+    /**
+     * Поиск клиента
+     * @param surname фамилия
+     * @param name имя
+     * @param patr отчество
+     * @param birth дата рождения
+     * @param categ категория
+     * @return индекс клиента в базе данных(списке)
+     */
     public int FindClient(String surname, String name, String patr, LocalDate birth, String categ)
     {
-        if (patr.isEmpty())
+        if (patr.isEmpty()) // проверяем введено ли отчество
         {
-            patr = "-";
+            patr = "-"; // если нет то ставится -
         }
-        if (categ.isEmpty())
+        if (categ.isEmpty()) // проверяем введена ли категория
         {
-            categ = "-";
+            categ = "-"; // если нет то ставится -
         }
-        for (int i = 0; i < listClient.size(); i++)
+        for (int i = 0; i < listClient.size(); i++) // проходим по списку (базе данных)
         {
             if (
-                    listClient.get(i).getName().equalsIgnoreCase(name) && listClient.get(i).getSurName().equalsIgnoreCase(surname) &&
+                    listClient.get(i).getName().equalsIgnoreCase(name) && listClient.get(i).getSurName().equalsIgnoreCase(surname) && // сверяем данные о клинте
                     listClient.get(i).getPatrynomic().equalsIgnoreCase(patr) && listClient.get(i).getBirthDate().equals(birth) &&
                     listClient.get(i).getCategory().equalsIgnoreCase(categ)
                )
             {
-                return i;
+                return i; // возращаем индекс
             }
         }
-        throw new OutOfMemoryError("Нет такого человека");
+        throw new OutOfMemoryError("Нет такого человека"); // если нет человека
     }
 
     /**
@@ -62,13 +71,13 @@ public class DataBase {
      */
     public void DelClient(int i)
     {
-        if (i < listClient.size())
+        if (i < listClient.size()) // если индекс в пределах базы данных (списка)
         {
-            listClient.remove(i);
+            listClient.remove(i); // удаляем клиента из списка
         }
-        else
+        else // индекс за пределами массива
         {
-            throw new OutOfMemoryError("Клиента с таким индексом нет");
+            throw new OutOfMemoryError("Клиента с таким индексом нет"); // кидаем ошибку
         }
     }
 
@@ -83,8 +92,8 @@ public class DataBase {
      */
     public void EditClient(String surname, String name, String patr, LocalDate birth, String categ, int i)
     {
-        if (i < listClient.size()) {
-            listClient.get(i).setCategory(categ);
+        if (i < listClient.size()) { // проходим по списку(базе дынных)
+            listClient.get(i).setCategory(categ); // задаем новую информацию о клиенте
             listClient.get(i).setBirthDate(birth);
             listClient.get(i).setName(name);
             listClient.get(i).setSurName(surname);
@@ -92,14 +101,14 @@ public class DataBase {
         }
         else
         {
-            throw new OutOfMemoryError("Нет такого индекса");
+            throw new OutOfMemoryError("Нет такого индекса"); // если индекс за пределами массива
         }
     }
 
     /**
-     * Загрузка базы данных из файла
+     * Загрузка базы данных из файла.
+     * Работает с текстовыми файлами.
      * @param file имя файла
-     //todo описание файла
      */
     public void Load(String file)
     {
@@ -122,7 +131,8 @@ public class DataBase {
     }
 
     /**
-     * Сохранение базы данных в файл
+     * Сохранение базы данных в файл.
+     * Работает с текстовыми файлами.
      * @param file имя файла
      */
     public void Save(String file)
